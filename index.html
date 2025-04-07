@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ChoreApp</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Role Selection -->
+    <div class="card" id="roleSelection">
+      <h1>Family Chore Tracker</h1>
+      <button class="btn" onclick="showView('parentLogin')"><i class="fas fa-user-shield"></i> I'm a Parent</button>
+      <button class="btn btn-outline" onclick="showView('childLogin')"><i class="fas fa-child"></i> I'm a Child</button>
+    </div>
+
+    <!-- Parent Login -->
+    <div class="card hidden" id="parentLogin">
+      <h2>Parent Login</h2>
+      <div class="form-group"><input type="text" id="parentName" placeholder="Parent Name"></div>
+      <div class="form-group"><input type="password" id="parentPassword" placeholder="Password"></div>
+      <button class="btn" onclick="loginParent()">Log In</button>
+      <p class="switch-auth">Don't have an account? <a onclick="showView('parentSignup')">Sign up</a></p>
+    </div>
+
+    <!-- Parent Signup -->
+    <div class="card hidden" id="parentSignup">
+      <h2>Create Account</h2>
+      <div class="form-group"><input type="text" id="newParentName" placeholder="Parent Name"></div>
+      <div class="form-group"><input type="password" id="newParentPassword" placeholder="Password"></div>
+      <div class="form-group"><input type="password" id="confirmParentPassword" placeholder="Confirm Password"></div>
+      <button class="btn" onclick="signupParent()">Create Account</button>
+      <p class="switch-auth">Already have an account? <a onclick="showView('parentLogin')">Log in</a></p>
+    </div>
+
+    <!-- Child Login -->
+    <div class="card hidden" id="childLogin">
+      <h2>Child Login</h2>
+      <div class="form-group"><select id="childSelect"></select></div>
+      <div class="form-group"><input type="password" id="childPassword" placeholder="Password"></div>
+      <button class="btn" onclick="loginChild()">Log In</button>
+    </div>
+
+    <!-- Parent Dashboard -->
+    <div class="card hidden" id="parentDashboard">
+      <h2 id="welcomeParent"></h2>
+      <h3>Add Child</h3>
+      <div class="form-group"><input type="text" id="kidName" placeholder="Child Name"></div>
+      <div class="form-group"><input type="password" id="kidPassword" placeholder="Password"></div>
+      <button class="btn" onclick="addKid()">Add Child</button>
+
+      <h3>Assign Task</h3>
+      <div class="form-group"><select id="kidDropdown"></select></div>
+      <div class="form-group"><input type="date" id="taskDate"></div>
+      <div class="form-group">
+        <select id="taskSelect">
+          <option>Clean Room</option>
+          <option>Read Book</option>
+          <option>Do Homework</option>
+        </select>
+        <input type="text" id="customTask" class="custom-task-input" placeholder="Or create custom task">
+      </div>
+      <button class="btn" onclick="assignTask()">Assign Task</button>
+
+      <h3>All Tasks</h3>
+      <button class="btn clear-tasks-btn" onclick="clearWeeklyTasks()">
+        <i class="fas fa-broom"></i> Clear Completed Tasks (Weekly)
+      </button>
+      <div id="allTasks"></div>
+    </div>
+
+    <!-- Child Dashboard -->
+    <div class="card hidden" id="childDashboard">
+      <h2 id="welcomeChild"></h2>
+      <div class="points-container">
+        <h3>Your Points</h3>
+        <div class="points-value" id="totalScore">0</div>
+      </div>
+      <h3>Today's Tasks</h3>
+      <div id="childTasks"></div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
